@@ -32,31 +32,31 @@
 
     <script type="text/javascript">
       function GetMap()
-		{
-		//var map = new Microsoft.Maps.Map('#myMap');
-		var map = new Microsoft.Maps.Map('#myMap', {});
+      {
+        //var map = new Microsoft.Maps.Map('#myMap');
+        var map = new Microsoft.Maps.Map('#myMap', {});
 
-		//Load the directions module.
-		Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () {
-		//Create an instance of the directions manager.
-		directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
+        //Load the directions module.
+        Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () {
+          //Create an instance of the directions manager.
+          directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
 
-		//Create waypoints to route between.
-		var home = new Microsoft.Maps.Directions.Waypoint({ address: 'home', location: new Microsoft.Maps.Location(29.6175778, -82.3559756) });
-		directionsManager.addWaypoint(home);
+          //Create waypoints to route between.
+          var home = new Microsoft.Maps.Directions.Waypoint({ address: 'home', location: new Microsoft.Maps.Location(29.6175778, -82.3559756) });
+          directionsManager.addWaypoint(home);
+            //It got updated
+          var campus = new Microsoft.Maps.Directions.Waypoint({ address: 'campus', location: new Microsoft.Maps.Location(30.6436, -82.4) });
+          directionsManager.addWaypoint(campus);
 
-		var campus = new Microsoft.Maps.Directions.Waypoint({ address: 'campus', location: new Microsoft.Maps.Location(29.6436, -82.3549) });
-		directionsManager.addWaypoint(campus);
+          //Specify the element in which the itinerary will be rendered.
+          directionsManager.setRenderOptions({ itineraryContainer: '#directionsItinerary' });
 
-		//Specify the element in which the itinerary will be rendered.
-		directionsManager.setRenderOptions({ itineraryContainer: '#directionsItinerary' });
 
-		
-		//Calculate directions.
-		directionsManager.calculateDirections();
-		});
-		}
-   </script>  
+          //Calculate directions.
+          directionsManager.calculateDirections();
+        });
+      }
+    </script>  
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AixbZsh0iF2Uvsmk5iXVAdlztlQTsIU0lJntJCtS2mYY8OexSyDS3Vm8WOoKY9vm' async defer></script>
   </body>
