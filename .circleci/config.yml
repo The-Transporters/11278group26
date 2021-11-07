@@ -26,20 +26,12 @@ jobs:
       # replace with your preferred image
       - image: cimg/base:stable
     steps:
+      - checkout
       - node/install:
           #version: '6.15.14'
           lts: true 
-          node-install-dir: ~/project/src
-
-  npm-start:
-    docker:
-      - image: cimg/base:stable
-
-    steps:
-      - checkout
-      - run: 
-          name: "npmstart"
-          command: npm start
+          node-install-dir: ~/project/
+  
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -51,8 +43,3 @@ workflows:
     jobs:
       - npm-install   
  
-
-  npm-start-workflow:
-     jobs:
-      - npm-start
-  
