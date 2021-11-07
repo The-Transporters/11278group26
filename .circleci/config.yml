@@ -49,8 +49,9 @@ workflows:
       - say-hello
   npm-install-workflow:
     jobs:
-      - npm-install   
-  npm-start-workflow:
-     jobs:
-      - npm-start
+      - npm-install 
+      - npm-start  
+  #npm-start-workflow:
+  #   jobs:
+  #    - npm-start
   
