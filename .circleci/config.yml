@@ -4,6 +4,9 @@ version: 2.1
 app-dir: ~/project
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
+orbs:
+  node: circleci/node@4.7.0
+
 jobs:
   say-hello:
     # Specify the execution environment.
@@ -18,7 +21,7 @@ jobs:
           name: "Say hello"
           command: "echo Hello, World!"
 
-  sample-test:
+  npm-start:
     docker:
       - image: cimg/base:stable
 
@@ -28,10 +31,24 @@ jobs:
           name: "npmstart"
           command: npm start
 
+  npm-install:
+    docker:
+      # replace with your preferred image
+      - image: cimg/base:stable
+    steps:
+      - node/install-npm:
+          version: '6.15.14'
+
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   say-hello-workflow:
     jobs:
       - say-hello
-      - sample-test
+  install-npm-workflow:
+    jobs:
+      - npm-install   
+  npm-start-workflow:
+     jobs:
+      - npm-start
+  
