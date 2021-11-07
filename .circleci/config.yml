@@ -31,6 +31,8 @@ jobs:
           lts: true 
           node-install-dir: ~/project/src
       - run:
+          command: cd src
+      - run:
           command: npm start
 
   npm-start:
