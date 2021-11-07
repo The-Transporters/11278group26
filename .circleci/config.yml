@@ -30,7 +30,7 @@ jobs:
       - node/install:
           #version: '6.15.14'
           lts: true 
-          node-install-dir: ~/project/
+          node-install-dir: ~/project/project
   
 
 # Invoke jobs via workflows
