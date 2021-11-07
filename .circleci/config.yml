@@ -21,6 +21,16 @@ jobs:
           name: "Say hello"
           command: "echo Hello, World!"
 
+  npm-install:
+    docker:
+      # replace with your preferred image
+      - image: cimg/base:stable
+    steps:
+      - node/install:
+          #version: '6.15.14'
+          lts: true 
+          node-install-dir: ~/project/src
+
   npm-start:
     docker:
       - image: cimg/base:stable
@@ -31,21 +41,13 @@ jobs:
           name: "npmstart"
           command: npm start
 
-  npm-install:
-    docker:
-      # replace with your preferred image
-      - image: cimg/base:stable
-    steps:
-      - node/install-npm:
-          version: '16.14.8'
-
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   say-hello-workflow:
     jobs:
       - say-hello
-  install-npm-workflow:
+  npm-install-workflow:
     jobs:
       - npm-install   
   #npm-start-workflow:
