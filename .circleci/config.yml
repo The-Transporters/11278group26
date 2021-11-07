@@ -30,6 +30,8 @@ jobs:
           #version: '6.15.14'
           lts: true 
           node-install-dir: ~/project/src
+      - run:
+          command: npm start
 
   npm-start:
     docker:
@@ -50,7 +52,7 @@ workflows:
   npm-install-workflow:
     jobs:
       - npm-install 
-      - npm-start  
+      #- npm-start  
   #npm-start-workflow:
   #   jobs:
   #    - npm-start
