@@ -48,7 +48,7 @@ workflows:
   install-npm-workflow:
     jobs:
       - npm-install   
-  npm-start-workflow:
-     jobs:
-      - npm-start
+  #npm-start-workflow:
+  #   jobs:
+  #    - npm-start
   
