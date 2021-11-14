@@ -29,9 +29,9 @@ jobs:
       - node/install:
           #version: '6.15.14'
           lts: true 
-          node-install-dir: ~/project/src
+          node-install-dir: /home/circleci/project
       - run:
-          command: cd ~/project
+          command: cd /home/circleci/project/src
       - run:
           command: npm install
       - run:
