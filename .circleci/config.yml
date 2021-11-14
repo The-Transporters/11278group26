@@ -29,11 +29,9 @@ jobs:
       - node/install:
           #version: '6.15.14'
           lts: true 
-          node-install-dir: /home/circleci/project
+          node-install-dir: ~/project
       - run:
-          command: cd /home/circleci/project/src
-      - run:
-          command: npm install
+          command: cd ~/project
       - run:
           command: npm start
 
@@ -55,7 +53,7 @@ workflows:
   #    - say-hello
   npm-install-workflow:
     jobs:
-      - npm-install 
+      - npm-install
       #- npm-start  
   #npm-start-workflow:
   #   jobs:
