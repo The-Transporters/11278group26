@@ -31,7 +31,7 @@ jobs:
           lts: true 
           node-install-dir: ~/project/src
       - run:
-          command: cd ~/project
+          command: cd ~/project/src
       - run:
           command: npm start
 
@@ -43,14 +43,14 @@ jobs:
       - checkout
       - run: 
           name: "npmstart"
-          command: npm run start
+          command: npm start
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
-    jobs:
-      - say-hello
+  #say-hello-workflow:
+  #  jobs:
+  #    - say-hello
   npm-install-workflow:
     jobs:
       - npm-install 
