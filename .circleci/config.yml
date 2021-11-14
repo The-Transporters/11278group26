@@ -31,9 +31,9 @@ jobs:
           lts: true 
           node-install-dir: ~/project/src
       - run:
-          command: cd ~/project/src
+          command: cd ~/project
       - run:
-          command: npm start
+          command: ls
 
   npm-start:
     docker:
