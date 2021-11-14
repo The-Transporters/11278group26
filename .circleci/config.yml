@@ -33,7 +33,9 @@ jobs:
       - run:
           command: cd ~/project
       - run:
-          command: ls
+          command: npm install
+      - run:
+          command: npm start
 
   npm-start:
     docker:
