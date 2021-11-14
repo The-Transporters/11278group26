@@ -32,7 +32,7 @@ jobs:
           node-install-dir: ~/project
       - run:
           command: cd ~/project
-      - node/install-packages
+      - node/install-npm
       - run:
           command: npm start
 
