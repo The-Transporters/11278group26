@@ -4,7 +4,7 @@ import './App.css';
 import { ReactBingmaps } from 'react-bingmaps';
 import ReactWeather, {useOpenWeather} from 'react-open-weather';
 
-
+import { usePosition } from 'use-position';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
@@ -17,8 +17,8 @@ function App() {
 
   const { data, isLoading, errorMessage } = useOpenWeather({
     key: '55eedb3610cdff0867bc0990602170eb',
-    lat: '48.137154',
-    lon: '11.576124',
+    lat: usePosition().latitude,
+    lon: usePosition().longitude,
     lang: 'en',
     unit: 'imperial', // values are (metric, standard, imperial)
     
@@ -105,5 +105,30 @@ function App() {
           
   );
 }
+
+export const Demo = () => {
+  const watch = true;
+  const {
+    latitude,
+    longitude,
+    speed,
+    timestamp,
+    accuracy,
+    heading,
+    error,
+  } = usePosition(watch);
+
+  return (
+    <code>
+      latitude: {latitude}<br/>
+      longitude: {longitude}<br/>
+      speed: {speed}<br/>
+      timestamp: {timestamp}<br/>
+      accuracy: {accuracy && `${accuracy} meters`}<br/>
+      heading: {heading && `${heading} degrees`}<br/>
+      error: {error}
+    </code>
+  );
+};
 
 export default App;
