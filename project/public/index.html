@@ -29,6 +29,7 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+<<<<<<< HEAD
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -39,5 +40,42 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+=======
+    <div class="weather-container">
+      <p class="weather"></p>
+    </div>
+
+    <div id="myMap" style='position:relative;width:600px;height:400px;'></div>
+
+    <script type="text/javascript">
+      function GetMap()
+      {
+        //var map = new Microsoft.Maps.Map('#myMap');
+        var map = new Microsoft.Maps.Map('#myMap', {});
+
+        //Load the directions module.
+        Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function () {
+          //Create an instance of the directions manager.
+          directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
+
+          //Create waypoints to route between.
+          var home = new Microsoft.Maps.Directions.Waypoint({ address: 'home', location: new Microsoft.Maps.Location(29.6175778, -82.3559756) });
+          directionsManager.addWaypoint(home);
+            //It got updated
+          var campus = new Microsoft.Maps.Directions.Waypoint({ address: 'campus', location: new Microsoft.Maps.Location(30.6436, -82.4) });
+          directionsManager.addWaypoint(campus);
+
+          //Specify the element in which the itinerary will be rendered.
+          directionsManager.setRenderOptions({ itineraryContainer: '#directionsItinerary' });
+
+
+          //Calculate directions.
+          directionsManager.calculateDirections();
+        });
+      }
+    </script>  
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AixbZsh0iF2Uvsmk5iXVAdlztlQTsIU0lJntJCtS2mYY8OexSyDS3Vm8WOoKY9vm' async defer></script>
+>>>>>>> 385ceda92925d3f1d9a68390aae3f72155e2c950
   </body>
 </html>

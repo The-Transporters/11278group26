@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 import React,{useState} from 'react';
 import './App.css';
@@ -107,3 +108,6 @@ function App() {
 }
 
 export default App;
+=======
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+>>>>>>> 385ceda92925d3f1d9a68390aae3f72155e2c950

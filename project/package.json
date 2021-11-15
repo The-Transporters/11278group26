@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "my-app",
+=======
+  "name": "project",
+>>>>>>> 385ceda92925d3f1d9a68390aae3f72155e2c950
   "version": "0.1.0",
   "private": true,
   "dependencies": {
