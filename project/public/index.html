@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <!--<meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    
+      manifest.json provides met adata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <title>React App</title>-->
+
+    <meta charset="utf-8" />
+    <script type = 'text/javascript' src="App.js"></script> 
+    <script type = 'text/javascript' src="map.js"></script>  
+    <script type = 'text/javascript' src="test.js"></script>
+    <script type = 'text/javascript' src="weather.js"></script>  
+    
+  </head>
+
+
+  <body>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <!--<noscript>You need to enable JavaScript to run this app.</noscript>-->
+    <div id="root"></div>
+    <div class="weather-container">
+      <img class="icon">
+      <p class="weather"></p>
+      <p class="temp"></p>
+    </div>
+    
+    <div id="myMap" style='width:500px;height:500px;'></div>
+
+    
+    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AixbZsh0iF2Uvsmk5iXVAdlztlQTsIU0lJntJCtS2mYY8OexSyDS3Vm8WOoKY9vm' async defer></script>
+    <style>
+      html, body{
+          padding:0;
+          margin:0;
+          height:100%;
+      }
+
+      .directionsContainer{
+          width:380px;
+          height:100%;
+          overflow-y:auto;
+          float:left;
+      }
+
+      #myMap{
+          position:relative;
+          width:calc(100% - 380px);
+          height:100%;
+          float:left;
+      }
+  </style>
+
+
+  <div style="margin-top:10px;">
+    From: <input id="fromTbx" type="text" value=""/>
+    To: <input id="toTbx" type="text" value=""/>
+    <input type="button" onclick="GetDirections()" value="Calculate" />
+    <input type="button" onclick="GetCurrentLocation()" value="Currrent Location" />
+  </div>    
+
+  <div class="directionsContainer">
+        <div id="directionsPanel"></div>
+        <div id="directionsItinerary"></div>
+    </div>
+    <div id="myMap"></div>
+  </body>
+</html>
