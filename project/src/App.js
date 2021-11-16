@@ -58,16 +58,16 @@ console.log(weatherString);
   const routeMode = ["transit","driving", "walking"];
 
  
-  var routeModeSwitch = 0;
+  var routeModeSwitch = 0 //default is bus but it never really is accessed;
 
-  if(weatherString === "Clear"){
+  if(weatherString === "Clear" || weatherString === "Clouds"){
 
-    routeModeSwitch = 2;
+    routeModeSwitch = 2 //walking;
 
   }
   else{
 
-    routeModeSwitch = 1;
+    routeModeSwitch = 1 //riding;
     
   }
   
