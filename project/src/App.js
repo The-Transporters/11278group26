@@ -7,14 +7,13 @@ import ReactWeather, {useOpenWeather} from 'react-open-weather';
 import { usePosition } from 'use-position';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-
+import Button from '@mui/material/Button';
 
 
 
 function App() {
-  const [start,startValue] = useState("");
   const [end,endValue] = useState("");
-
+  const [dest,endDest] = useState("");
   const { data, isLoading, errorMessage } = useOpenWeather({
     key: '55eedb3610cdff0867bc0990602170eb',
     lat: usePosition().latitude,
@@ -27,13 +26,13 @@ function App() {
 
   const handleChange = e =>{
 
-    startValue(e.target.value);
+    endValue(e.target.value);
 
   };
 
   const handleChange1 = e =>{
 
-    endValue(e.target.value);
+    endDest(end);
 
   };
 
@@ -46,62 +45,74 @@ function App() {
   
   return (
     <div className="App">
-<div className = "top-bar">
-            <Box
-      component="form"
-      sx={{
-        '& > :not(style)': { m: 1, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <TextField  label="Start" variant="outlined" value={start} onChange={handleChange} />
-      <TextField  label="Destination" variant="filled" value={end} onChange={handleChange1}  />
-      
-    </Box>
-  
-</div>
-<div className = "weather-bar">
+      <div className = "top-bar">
+                  <Box
+                    component="form"
+                    sx={{
+                      '& > :not(style)': { m: 1, width: '25ch' },
+                    }}
+                    noValidate
+                    autoComplete="off"
+                  >
+                    {/* <TextField  label="Destination" variant="filled"  onChange={handleChange}  /> */}
 
-<ReactWeather
-      isLoading={isLoading}
-      errorMessage={errorMessage}
-      data={data}
-      lang="en"
-      locationLabel="Munich"
-      unitsLabels={{ temperature: 'F', windSpeed: 'Km/h' }}
-      
-    />
+                  <TextField 
+                    id="outlined-required"
+                    label="Destination"
+                    defaultValue=""
+                    value={end}
+                    onChange={handleChange}
+                  />
+                  <Button
+                    onClick={handleChange1}
+                  >
+                    Search
+                  </Button>
+          </Box>
+        
+      </div>
+      <div className = "weather-bar">
 
-</div>
+        <ReactWeather
+            isLoading={isLoading}
+            errorMessage={errorMessage}
+            data={data}
+            lang="en"
+            locationLabel="Munich"
+            unitsLabels={{ temperature: 'F', windSpeed: 'Km/h' }}
+            
+          />
 
- <div className = "map-three">
-            <ReactBingmaps
-              className = "customClass"
-              id = "eleven" 
-              center = {[13.0827, 80.2707]}
-              bingmapKey = {'AsisxH1g8tkBuuyYGPjvgxfeYPmn9JbN1OTLNEupBk-0L8pmI3bAWT9s5tuJ98Vu'}
-              directions = {{
-                "renderOptions": {"itineraryContainer": "itineraryContainer" },
-                "requestOptions": {"routeMode": routeMode[routeModeSwitch], "maxRoutes": 2},
-                "wayPoints": [
-                      {
-                        address: start
-                      },
-                      {
-                        address: end
-                      }
-                    ]
-              }}
-            > 
-            </ReactBingmaps>
+      </div>
 
-            </div>
-            <div className="direction-container">
-              <div className="input-panel" id='inputPanel'></div>
-              <div className="itinerary-container" id='itineraryContainer'></div>
-            </div>
-          </div>
+      <div className = "map-three">
+        <ReactBingmaps
+          className = "customClass"
+          id = "eleven" 
+          center = {[usePosition().latitude, usePosition().longitide]}
+          bingmapKey = {'AsisxH1g8tkBuuyYGPjvgxfeYPmn9JbN1OTLNEupBk-0L8pmI3bAWT9s5tuJ98Vu'}
+          //mapOptions = { {'maxZoom': 20, 'minZoom': 10} }
+          directions = {{
+            "renderOptions": {"itineraryContainer": "itineraryContainer" },
+            "requestOptions": {"routeMode": routeMode[routeModeSwitch], "maxRoutes": 3},
+            "wayPoints": [
+                  {
+                    location: [usePosition().latitude, usePosition().longitude]
+                  },
+                  {
+                    address: dest
+                  }
+                ]
+          }}
+        > 
+        </ReactBingmaps>
+
+      </div>
+      <div className="direction-container">
+      <div className="input-panel" id='inputPanel'></div>
+      <div className="itinerary-container" id='itineraryContainer'></div>
+      </div>
+    </div>
           
   );
 }
