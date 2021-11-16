@@ -51,8 +51,8 @@
 }
 
 .weather-bar{
-  width: 30%;
-  height: 30%;
+  width: 20%;
+  height: 20%;
   position: fixed;
   z-index: 999;
 }

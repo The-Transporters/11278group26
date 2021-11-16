@@ -3,13 +3,14 @@ import React,{useState} from 'react';
 import './App.css';
 import { ReactBingmaps } from 'react-bingmaps';
 import ReactWeather, {useOpenWeather} from 'react-open-weather';
-
+import $ from 'jquery';
 import { usePosition } from 'use-position';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-
+var weatherString;
+const weatherTypes = ["Drizzle", "Clouds", "Clear", "Snow", "Rain", "Thunderstorm"];
 
 function App() {
   const [end,endValue] = useState("");
@@ -23,6 +24,24 @@ function App() {
     
   });
 
+  
+var latitude = usePosition().latitude;
+var longitude = usePosition().longitude;
+  
+  
+  $.getJSON("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude +"&units=imperial&appid=55eedb3610cdff0867bc0990602170eb", function(data){
+ console.log(data);
+  
+    var icon = "http://api.openweathermap.org/img/w/" + data.weather[0].icon +".png";
+    var temp =data.main.temp + "°F";
+    var weather = data.weather[0].main;
+    weatherString = data.weather[0].main;
+    $(".icon").attr("src", icon);
+    $(".temp").append(temp);
+    $(".weather").append(weather);
+  }
+  );
+console.log(weatherString);
 
   const handleChange = e =>{
 
@@ -39,9 +58,18 @@ function App() {
   const routeMode = ["transit","driving", "walking"];
 
  
-  var routeModeSwitch = 1;
+  var routeModeSwitch = 0;
 
+  if(weatherString === "Clear"){
 
+    routeModeSwitch = 2;
+
+  }
+  else{
+
+    routeModeSwitch = 1;
+    
+  }
   
   return (
     <div className="App">
@@ -78,7 +106,7 @@ function App() {
             errorMessage={errorMessage}
             data={data}
             lang="en"
-            locationLabel="Munich"
+            locationLabel="Current Location"
             unitsLabels={{ temperature: 'F', windSpeed: 'Km/h' }}
             
           />
@@ -94,7 +122,7 @@ function App() {
           //mapOptions = { {'maxZoom': 20, 'minZoom': 10} }
           directions = {{
             "renderOptions": {"itineraryContainer": "itineraryContainer" },
-            "requestOptions": {"routeMode": routeMode[routeModeSwitch], "maxRoutes": 3},
+            "requestOptions": {"routeMode": routeMode[routeModeSwitch], "maxRoutes": 2},
             "wayPoints": [
                   {
                     location: [usePosition().latitude, usePosition().longitude]
