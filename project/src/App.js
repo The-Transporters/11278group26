@@ -13,20 +13,22 @@ var weatherString;
 const weatherTypes = ["Drizzle", "Clouds", "Clear", "Snow", "Rain", "Thunderstorm"];
 
 function App() {
+
+  var latitude = usePosition().latitude;
+  var longitude = usePosition().longitude;
   const [end,endValue] = useState("");
   const [dest,endDest] = useState("");
   const { data, isLoading, errorMessage } = useOpenWeather({
     key: '55eedb3610cdff0867bc0990602170eb',
-    lat: usePosition().latitude,
-    lon: usePosition().longitude,
+    lat: latitude,
+    lon: longitude,
     lang: 'en',
     unit: 'imperial', // values are (metric, standard, imperial)
     
   });
 
-  
-var latitude = usePosition().latitude;
-var longitude = usePosition().longitude;
+
+
   
   
   $.getJSON("http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude +"&units=imperial&appid=55eedb3610cdff0867bc0990602170eb", function(data){
@@ -75,6 +77,7 @@ console.log(weatherString);
     <div className="App">
       <div className = "top-bar">
                   <Box
+                    
                     component="form"
                     sx={{
                       '& > :not(style)': { m: 1, width: '25ch' },
@@ -92,6 +95,7 @@ console.log(weatherString);
                     onChange={handleChange}
                   />
                   <Button
+                    className = "button"
                     onClick={handleChange1}
                   >
                     Search
@@ -117,7 +121,7 @@ console.log(weatherString);
         <ReactBingmaps
           className = "customClass"
           id = "eleven" 
-          center = {[usePosition().latitude, usePosition().longitide]}
+          center = {[latitude, longitude]}
           bingmapKey = {'AsisxH1g8tkBuuyYGPjvgxfeYPmn9JbN1OTLNEupBk-0L8pmI3bAWT9s5tuJ98Vu'}
           //mapOptions = { {'maxZoom': 20, 'minZoom': 10} }
           directions = {{
@@ -125,7 +129,7 @@ console.log(weatherString);
             "requestOptions": {"routeMode": routeMode[routeModeSwitch], "maxRoutes": 2},
             "wayPoints": [
                   {
-                    location: [usePosition().latitude, usePosition().longitude]
+                    location: [latitude,longitude]
                   },
                   {
                     address: dest
