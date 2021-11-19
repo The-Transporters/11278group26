@@ -16,5 +16,7 @@ Once both are properly working and the files from our github are installed, in a
 Once everything is installed you should be able to run the command ‘npm start’ in the console in order to run the web app. Once running it will open up a localhost page, and the default port is generally: 3000. (http://localhost:3000/). Then the application should display in your browser.
 
 API keys:
+
 Openweather: 55eedb3610cdff0867bc0990602170eb
+
 Bing: AsisxH1g8tkBuuyYGPjvgxfeYPmn9JbN1OTLNEupBk-0L8pmI3bAWT9s5tuJ98Vu
